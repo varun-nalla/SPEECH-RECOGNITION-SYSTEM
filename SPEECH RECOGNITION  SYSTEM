@@ -1,0 +1,41 @@
+const int led1 = 8;  // Pin for LED 1
+const int led2 = 9;  // Pin for LED 2
+const int led3 = 10; // Pin for LED 3
+
+void setup() {
+  pinMode(led1, OUTPUT);  // Set LED 1 as output
+  pinMode(led2, OUTPUT);  // Set LED 2 as output
+  pinMode(led3, OUTPUT);  // Set LED 3 as output
+  Serial.begin(9600);     // Begin Serial communication
+  Serial.println("Speech Recognition System Simulation");
+  Serial.println("Commands: LED1 ON, LED1 OFF, LED2 ON, LED2 OFF, LED3 ON, LED3 OFF");
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    String command = Serial.readStringUntil('\n');  // Read input from Serial Monitor
+    command.trim();  // Remove any extra spaces or newlines
+
+    if (command == "LED1 ON") {
+      digitalWrite(led1, HIGH);
+      Serial.println("LED 1 turned ON");
+    } else if (command == "LED1 OFF") {
+      digitalWrite(led1, LOW);
+      Serial.println("LED 1 turned OFF");
+    } else if (command == "LED2 ON") {
+      digitalWrite(led2, HIGH);
+      Serial.println("LED 2 turned ON");
+    } else if (command == "LED2 OFF") {
+      digitalWrite(led2, LOW);
+      Serial.println("LED 2 turned OFF");
+    } else if (command == "LED3 ON") {
+      digitalWrite(led3, HIGH);
+      Serial.println("LED 3 turned ON");
+    } else if (command == "LED3 OFF") {
+      digitalWrite(led3, LOW);
+      Serial.println("LED 3 turned OFF");
+    } else {
+      Serial.println("Invalid Command");
+    }
+  }
+}
